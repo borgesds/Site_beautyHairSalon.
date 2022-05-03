@@ -128,6 +128,35 @@ nav ul li {
     text-align: center;
 }
 
+nav ul li a {
+    transition: color 0.2s;
+    position: relative;/* Comunica com position: absolute; do nav ul li a:hover::after*/
+}
+
+nav ul li a:after {
+    /*:after quer dizer que vai fazer algo depois que  estiver um comando*/
+    content: "";
+    width: 0%;
+    height: 2px;
+    background: var(--base-color);
+
+    position: absolute;
+    left: 0;
+    bottom: -1.5rem;
+
+    transition: width 0.2s;
+}
+
+nav ul li a:hover::after {
+    /*:hover::after quer dizer que vai fazer algo depois que o mouse estiver em cima do elemento*/
+    width: 100%;
+}
+
+nav ul li a:hover {
+    /*hover é quando passar o mouse em cima*/
+    color: var(--base-color);
+}
+
 nav .menu {
     opacity: 0;
     visibility: hidden;
@@ -155,6 +184,27 @@ nav.show .menu {
 
 nav.show ul.grid {
     gap: 4rem;
+}
+
+/* toggle menu */
+.toggle {
+    color: var(--base-color);
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+nav .icon-close {
+    visibility: hidden;
+    opacity: 0;
+
+    position: absolute;
+    right: 1.5rem;
+    /* Transição diferenciada */
+}
+
+nav.show .icon-close {
+    visibility: visible;
+    opacity: 1;
 }
 
 /* ==== Home =====================================*/
