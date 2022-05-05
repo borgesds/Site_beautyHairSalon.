@@ -68,8 +68,18 @@ body {
     height:  1px;
     background: linear-gradient(
         270deg,
-        hsla(var(--hue), 36%, 57%, 1) 0%,
-        hsla(var(--hue), 65%, 88%, 0.34) 100%
+        hsla(var(--hue), 36%, 57%, 1),
+        hsla(var(--hue), 65%, 88%, 0.34)
+    );
+}
+
+.divider-2 {
+    height:  1px;
+    background: linear-gradient(
+        270deg,
+        hsla(var(--hue), 65%, 88%, 0.34),
+        hsla(var(--hue), 36%, 57%, 1)
+        
     );
 }
 
@@ -86,6 +96,18 @@ body {
 
 .section {
     padding: 5rem 0;
+}
+
+.section .title {
+    margin-bottom: 1rem;
+}
+
+.section header {
+    margin-bottom: 4rem;
+}
+
+.section header strong {
+    color: var(--base-color);
 }
 
 #header { 
@@ -247,10 +269,63 @@ nav.show .icon-close {
     text-align: center;
 }
 
-#home .text h1 {
+#home .text h2 {
     margin-bottom: 1rem;
 }
 
 #home .text p {
     margin-bottom: 2rem;
+}
+
+/* ==== About =====================================*/
+#about {
+    background: white;
+}
+
+#about {
+    overflow: hidden;
+}
+
+#about .container {
+    margin: 0;
+}
+
+#about .image {
+    position: relative;
+}
+
+#about .image::before {/*Criando o elemento antes da imagem*/
+    content: '';
+    height: 100%;
+    width: 100%;
+    background: var(--base-color);
+    position: absolute;
+    top: -8.3%;
+    left: -33%;
+    z-index: 0;
+}
+
+#about .image img {
+    position: relative; /*habilita algumas funcionalidades*/
+    width: 100%;
+}
+
+#about .image img, 
+#about.image::before {
+    border-radius: 0.25rem;
+}
+
+#about .text {
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+}
+
+/* ==== Services =====================================*/
+.card grid {
+    gap: 1.5rem;
+}
+
+.card {
+    padding:3.625rem 2rem;
+    box-shadow: 0px 0px 12px rgba(0,0,0,0.08);
 }
