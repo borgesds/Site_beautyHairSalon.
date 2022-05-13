@@ -21,9 +21,9 @@ img {
 /* ==== Variables =====================================*/
 :root {
     --header-height: 4.5rem;
-
-    /* ==== Colors ==== */
-    --hue: 310;
+  
+    /* colors */
+    --hue: 159;
     /* HSL color mode */
     --base-color: hsl(var(--hue) 36% 57%);
     --base-color-second: hsl(var(--hue) 65% 88%);
@@ -32,63 +32,66 @@ img {
     --text-color: hsl(0 0% 46%);
     --text-color-light: hsl(0 0% 98%);
     --body-color: hsl(0 0% 98%);
-
+  
     /* fonts */
     --title-font-size: 1.875rem;
-}
+    --subtitle-font-size: 1rem;
+  
+    --title-font: 'Poppins', sans-serif;
+    --body-font: 'DM Sans', sans-serif;
+  }  
 
 /* ==== Base =====================================*/
 html {
     scroll-behavior: smooth;
-}
-
-body {
-    font: 400 var(--title-font-size) 'DM Sans', sans-serif;
+  }
+  
+  body {
+    font: 400 1rem var(--body-font);
     color: var(--text-color);
-    background: var(var(--base-color));
+    background: var(--body-color);
     -webkit-font-smoothing: antialiased;
-}
-
-.title {
-    font: 700 1.875rem 'Popping', sans-serif;
+  }
+  
+  .title {
+    font: 700 var(--title-font-size) var(--title-font);
     color: var(--title-color);
     -webkit-font-smoothing: auto;
-}
-
-.button {
-    background: var(--base-color);
+  }
+  
+  .button {
+    background-color: var(--base-color);
     color: var(--text-color-light);
     height: 3.5rem;
     display: inline-flex;
     align-items: center;
     padding: 0 2rem;
     border-radius: 0.25rem;
-    font: 500 1rem 'DM Sans', sans-serif;
+    font: 500 1rem var(--body-font);
     transition: background 0.3s;
-}
-
-.button:hover {/* Quando o mouser passar em cima*/
+  }
+  
+  .button:hover {
     background: var(--base-color-alt);
-}
-
-.divider-1 {
-    height:  1px;
+  }
+  
+  .divider-1 {
+    height: 1px;
     background: linear-gradient(
-        270deg,
-        hsla(var(--hue), 36%, 57%, 1),
-        hsla(var(--hue), 65%, 88%, 0.34)
+      270deg,
+      hsla(var(--hue), 36%, 57%, 1),
+      hsla(var(--hue), 65%, 88%, 0.34)
     );
-}
-
-.divider-2 {
-    height:  1px;
+  }
+  
+  .divider-2 {
+    height: 1px;
     background: linear-gradient(
-        270deg,
-        hsla(var(--hue), 65%, 88%, 0.34),
-        hsla(var(--hue), 36%, 57%, 1)
-        
+      270deg,
+      hsla(var(--hue), 65%, 88%, 0.34),
+      hsla(var(--hue), 36%, 57%, 1)
     );
-}
+  }
 
 /* ==== Layout =====================================*/
 .container {
@@ -102,11 +105,15 @@ body {
 }
 
 .section {
-    padding: 5rem 0;
+    padding: calc(5rem + var(--header-height)) 0;
 }
 
 .section .title {
     margin-bottom: 1rem;
+}
+
+.section .subtitle {
+    font-size: var(--subtitle-font-size);
 }
 
 .section header {
@@ -133,10 +140,6 @@ body {
 #header.scroll {
     background: var(--body-color);
     box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.15);
-}
-
-main {
-    margin-top: calc(var(--header-height) + 2rem)
 }
 
 /* ==== Logo =====================================*/
@@ -171,6 +174,11 @@ nav ul li a {
     position: relative;/* Comunica com position: absolute; do nav ul li a:hover::after*/
 }
 
+nav ul li a:hover,
+nav ul li a.active {
+  color: var(--base-color);
+}
+
 nav ul li a:after {
     /*:after quer dizer que vai fazer algo depois que  estiver um comando*/
     content: "";
@@ -185,14 +193,10 @@ nav ul li a:after {
     transition: width 0.2s;
 }
 
-nav ul li a:hover::after {
+nav ul li a:hover::after,
+nav ul li a.active::after {
     /*:hover::after quer dizer que vai fazer algo depois que o mouse estiver em cima do elemento*/
     width: 100%;
-}
-
-nav ul li a:hover {
-    /*hover é quando passar o mouse em cima*/
-    color: var(--base-color);
 }
 
 nav .menu {
@@ -309,10 +313,6 @@ nav.show .icon-close {
     background: white;
 }
 
-#about {
-    overflow: hidden;
-}
-
 #about .container {
     margin: 0;
 }
@@ -426,12 +426,17 @@ nav.show .icon-close {
 /* Swiper */
 .swiper-slide {
     height: auto;
-    padding: 4rem  1rem;
-}
-
-.swiper-pagination-bullet-active {
+    padding: 4rem 1rem;
+  }
+  
+  .swiper-pagination-bullet {
+    width: 0.75rem;
+    height: 0.75rem;
+  }
+  
+  .swiper-pagination-bullet-active {
     background: var(--base-color);
-}
+  }
 
 /* ==== Contact ====================================*/
 #contact .grid {
@@ -464,6 +469,10 @@ nav.show .icon-close {
 /* ==== Footer ====================================*/
 footer {
     background: var(--base-color);
+}
+
+footer.section {
+    padding: 4rem 0;
 }
 
 footer .logo {
@@ -522,12 +531,131 @@ footer .social a:hover {
 /*========= MEDIA QUERIES =========*/
 /* Responsive */
 /* extra large devices: 1200 > */
-
-/* large devices: 1023 > */
-/* large devices: 992 > */
-@media (min-width: 992px) {
+@media (min-width: 1200px) {
+    /* reusable classes */
+    .container {
+      max-width: 1120px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  
+    .section {
+      padding: 10rem 0;
+    }
+  
+    .section header,
+    #testimonials header {
+      max-width: 32rem;
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  
+    .button {
+      height: 3.125rem;
+    }
+  
+    /* navigation */
+    nav .menu {
+      opacity: 1;
+      visibility: visible;
+      top: 0;
+    }
+  
+    nav .menu ul {
+      display: flex;
+      gap: 2rem;
+    }
+  
+    nav .menu ul li a.title {
+      font: 400 1rem var(--body-font);
+      -webkit-font-smoothing: antialiased;
+    }
+  
+    nav .menu ul li a.title.active {
+      font-weight: bold;
+      -webkit-font-smoothing: auto;
+    }
+  
+    nav .icon-menu {
+      display: none;
+    }
+  
+    /* layout */
+    main {
+      margin-top: var(--header-height);
+    }
+  
+    /* home */
+    #home .container {
+      grid-auto-flow: column;
+      justify-content: space-between;
+      margin: 0 auto;
+    }
+  
+    #home .image {
+      order: 1;
+    }
+  
+    #home .text {
+      order: 0;
+      max-width: 24rem;
+      text-align: left;
+    }
+  
+    /* about */
+    #about .container {
+      margin: 0 auto;
+      grid-auto-flow: column;
+    }
+  
+    /* services */
+    .cards {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+  
+    .card {
+      padding-left: 3rem;
+      padding-right: 3rem;
+    }
+  
+    /* testimonials */
+    #testimonials .container {
+      margin-left: auto;
+      margin-right: auto;
+    }
+  
+    /* contact */
+    #contact .container {
+      grid-auto-flow: column;
+      align-items: center;
+    }
+  
+    #contact .text {
+      max-width: 25rem;
+    }
+  
+    /* footer */
+    footer.section {
+      padding: 3.75rem 0;
+    }
+  
+    footer .container {
+      grid-auto-flow: column;
+      align-items: center;
+      justify-content: space-between;
+    }
+  
+    footer .logo {
+      font-size: 2.25rem;
+    }
+  }
+  /* large devices: 1023 > */
+  /* large devices: 992 > */
+  @media (min-width: 992px) {
     :root {
-      --title-font-size: 2.2rem;
+      --title-font-size: 2.25rem;
+      --subtitle-font-size: 1.125rem;
     }
   }
   /* medium devices: 767 > */
